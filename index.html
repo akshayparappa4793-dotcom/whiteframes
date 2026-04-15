@@ -3,190 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>White Frame - The Hue Studios</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>White Frame | The Hue Studios</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
-        /* Essential Styles & Smooth Scrolling */
+        :root {
+            --primary: #cc4c39;
+            --dark: #0f0f0f;
+            --light: #ffffff;
+            --gray: #f4f4f4;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            color: #333; 
-            background-color: #fff;
-        }
-        
-        /* Header & Navigation */
-        header { 
-            background: #ffffff; 
-            padding: 20px 8%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: sticky; 
-            top: 0; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-            z-index: 1000; 
-        }
-        .logo-mark { 
-            color: #cc4c39; 
-            font-size: 36px; 
-            font-weight: 900; 
-            text-decoration: none; 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-        }
-        .logo-text { display: flex; flex-direction: column; }
-        .main-title { font-size: 22px; font-weight: bold; color: #111; text-transform: uppercase; line-height: 1; }
-        .sub-title { font-size: 11px; color: #777; letter-spacing: 2px; text-transform: uppercase; margin-top: 3px; }
-        nav a { 
-            margin-left: 35px; 
-            text-decoration: none; 
-            color: #111; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            font-size: 13px; 
-            transition: color 0.3s;
-        }
-        nav a:hover { color: #cc4c39; }
 
-        /* Hero Section */
-        .hero { 
-            height: 80vh; 
-            min-height: 500px;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://uploads.onecompiler.io/44ecb2ctp/44evqhnuw/39202400_dr3.jpg');
-            background-size: cover;
-            background-position: center;
-            background-color: #111; 
-            color: #ffffff; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            padding: 0 20px; 
-        }
-        .hero h1 { font-size: 4rem; margin: 0 0 20px; }
-        .hero h1 span { color: #cc4c39; }
-        .hero p { font-size: 1.25rem; color: #cccccc; max-width: 650px; margin-bottom: 40px; line-height: 1.6; }
-        .btn { 
-            background: #cc4c39; 
-            color: #ffffff; 
-            padding: 16px 35px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            border-radius: 4px; 
-            border: none; 
-            cursor: pointer; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-            transition: background 0.3s;
-        }
-        .btn:hover { background: #a83a2a; }
-
-        /* About Us Section */
-        .about {
-            padding: 100px 8%;
-            text-align: center;
-            background-color: #ffffff;
-        }
-        .about h2 { font-size: 2.8rem; margin-bottom: 30px; color: #111; }
-        .about p {
-            max-width: 800px;
-            margin: 0 auto;
-            color: #555;
-            font-size: 1.15rem;
-            line-height: 1.8;
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Services Section */
-        .services, .contact { padding: 100px 8%; text-align: center; }
-        .services { background: #f9f9f9; }
-        .services h2, .contact h2 { font-size: 2.8rem; margin-bottom: 50px; color: #111; }
-        .grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-        .card { 
-            background: #ffffff; 
-            padding: 45px 30px; 
-            border-top: 4px solid #cc4c39; 
-            width: 320px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.04); 
-            border-radius: 5px; 
-        }
-        .card h3 { margin-bottom: 15px; color: #111; font-size: 1.4rem; }
-        .card p { color: #666; line-height: 1.7; font-size: 1rem; }
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
-        /* Contact Section */
-        .contact-container { 
-            display: flex; 
-            justify-content: space-between; 
-            gap: 50px; 
-            max-width: 1000px; 
-            margin: 0 auto; 
-            text-align: left; 
-            flex-wrap: wrap;
-        }
-        .contact-info, .contact-form { flex: 1; min-width: 300px; }
-        .contact-info p { margin-bottom: 20px; color: #555; font-size: 1.1rem; line-height: 1.6; }
-        .contact-info .details { 
-            background: #f9f9f9; 
-            padding: 25px; 
-            border-left: 4px solid #cc4c39; 
-            margin-top: 30px;
-        }
-        .contact-info .details p { margin-bottom: 10px; font-size: 1rem; color: #111; font-weight: 500;}
-        .contact-info .details p:last-child { margin-bottom: 0; }
-        .contact-info span { font-weight: bold; color: #cc4c39; margin-right: 10px; }
-        
-        .contact-form input, .contact-form textarea { 
-            width: 100%; 
-            padding: 16px; 
-            margin-bottom: 20px; 
-            border: 1px solid #ddd; 
-            border-radius: 4px; 
-            box-sizing: border-box; 
-            font-family: inherit; 
-            font-size: 1rem;
-        }
-        .contact-form textarea { height: 140px; resize: vertical; }
-
-        /* Footer & Social Icons */
-        footer { 
-            background: #111111; 
-            color: #777777; 
-            text-align: center; 
-            padding: 50px 30px; 
-            font-size: 0.9rem; 
-        }
-        .social-links {
-            margin-bottom: 25px;
+        /* --- Header & Nav --- */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 8%;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .logo-mark {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 10px;
+        }
+
+        .logo-box {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
             justify-content: center;
+            font-weight: 800;
+            font-size: 24px;
+            border-radius: 4px;
+        }
+
+        .logo-text .main-title {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .logo-text .sub-title {
+            font-size: 0.6rem;
+            color: #777;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-left: 30px;
+            text-transform: uppercase;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 0%; height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after { width: 100%; }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80') center/cover;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span { color: var(--primary); }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .btn-premium {
+            padding: 18px 40px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            transition: var(--transition);
+            display: inline-block;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+        }
+
+        .btn-premium:hover {
+            background: transparent;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(204, 76, 57, 0.3);
+        }
+
+        /* --- Sections General --- */
+        section { padding: 120px 8%; }
+
+        .sec-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .sec-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .sec-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 25%;
+            width: 50%; height: 4px;
+            background: var(--primary);
+        }
+
+        /* --- About Section --- */
+        .about { background: var(--gray); }
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #444;
+        }
+
+        /* --- Services Grid --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
-        .social-links a {
-            color: #ffffff;
-            font-size: 28px;
-            transition: all 0.3s ease;
+
+        .service-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            transition: var(--transition);
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border-color: var(--primary);
+        }
+
+        .service-card i {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        /* --- Contact Section --- */
+        .contact-flex {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-box {
+            flex: 1;
+            min-width: 300px;
+            background: var(--dark);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+        }
+
+        .contact-form {
+            flex: 1.5;
+            min-width: 300px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 8% 30px;
+            text-align: center;
+        }
+
+        .social-icons {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
             text-decoration: none;
-            opacity: 0.7;
+            font-size: 20px;
+            transition: var(--transition);
         }
-        .social-links a:hover {
-            opacity: 1;
-            transform: translateY(-5px);
+
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: rotate(360deg);
         }
-        /* Brand Colors on Hover */
-        .social-links .insta:hover { color: #E1306C; }
-        .social-links .wa:hover { color: #25D366; }
-        .social-links .yt:hover { color: #FF0000; }
-        
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .hero-content h1 { font-size: 3rem; }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <a href="#" class="logo-mark">
-            W 
+            <div class="logo-box">W</div>
             <div class="logo-text">
                 <span class="main-title">White Frame</span>
                 <span class="sub-title">The Hue Studios</span>
@@ -199,84 +316,115 @@
             <a href="#contact">Contact</a>
         </nav>
     </header>
-    
+
     <section class="hero">
-        <h1>Elevating Your <span>Brand</span>.</h1>
-        <p>We craft compelling visual narratives and strategic advertising campaigns that make your business stand out in a crowded market.</p>
-        <a href="#contact" class="btn">Start a Project</a>
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <h1>Elevating Your <br><span>Brand Narrative</span>.</h1>
+            <p>We blend art and strategy to create visual experiences that resonate and convert.</p>
+            <a href="#contact" class="btn-premium">Start Your Journey</a>
+        </div>
     </section>
 
     <section id="about" class="about">
-        <h2>About Us</h2>
-        <p>At White Frame - The Hue Studios, we believe in the power of visual storytelling. Based in Kasaragod, Kerala, our agency blends creativity with strategic thinking to build brands that leave a lasting impact. Whether it's through striking design, immersive events, or targeted digital campaigns, we are dedicated to bringing your creative vision to life with precision and style.</p>
+        <div class="sec-title" data-aos="fade-up">
+            <h2>Our Story</h2>
+        </div>
+        <div class="about-container" data-aos="fade-up">
+            <p>At <strong>White Frame - The Hue Studios</strong>, we believe every brand has a soul. Based in the heart of Kasaragod, Kerala, we specialize in breathing life into ideas through cutting-edge design and strategic marketing. We don't just create; we inspire.</p>
+        </div>
     </section>
 
     <section id="services" class="services">
-        <h2>Creative Expertise</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Branding</h3>
-                <p>Designing impactful logos, typography, and cohesive visual systems that encapsulate your company's core values.</p>
+        <div class="sec-title" data-aos="fade-up">
+            <h2>Creative Expertise</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-bezier-curve"></i>
+                <h3>Strategic Branding</h3>
+                <p>Crafting identities that stand the test of time, from logos to full brand guidelines.</p>
             </div>
-            <div class="card">
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-camera-retro"></i>
                 <h3>Content Creation</h3>
-                <p>Creating scroll-stopping visuals, videos, and creatives designed to capture attention and tell your brand story.</p>
+                <p>High-impact visuals and storytelling tailored for the digital age.</p>
             </div>
-            <div class="card">
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-calendar-check"></i>
                 <h3>Event Planning</h3>
-                <p>We craft unforgettable experiences — from brand activations to corporate gatherings — turning ideas into immersive, well-executed events.</p>
+                <p>Turning corporate visions into immersive and unforgettable real-world experiences.</p>
             </div>
-            <div class="card">
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
+                <i class="fas fa-code"></i>
                 <h3>Web Development</h3>
-                <p>Designing fast, responsive, and conversion-focused websites that turn visitors into customers.</p>
+                <p>Fast, responsive, and aesthetically pleasing websites built for performance.</p>
             </div>
-            <div class="card">
-                <h3>Digital Advertising</h3>
-                <p>Developing highly targeted ad campaigns and engaging social media content designed to drive traffic and maximize conversions.</p>
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="500">
+                <i class="fas fa-ad"></i>
+                <h3>Digital Ads</h3>
+                <p>Data-driven campaigns that put your brand in front of the right audience.</p>
             </div>
-            <div class="card">
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="600">
+                <i class="fas fa-video"></i>
                 <h3>Media Production</h3>
-                <p>Delivering high-end commercial photography, striking video production, and dynamic animations to showcase your vision.</p>
+                <p>Professional video production and commercial photography at its finest.</p>
             </div>
         </div>
     </section>
 
     <section id="contact" class="contact">
-        <h2>Let's Connect</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <p>Ready to transform your brand? Reach out to discuss your creative requirements with our expert team.</p>
-                <div class="details">
-                    <p><span>Email:</span> whiteframes.wf@gmail.com</p>
-                    <p><span>Phone:</span> +91 9495476923</p>
-                    <p><span>Location:</span> Parappa, Kasaragod, Kerala</p>
-                </div>
+        <div class="sec-title" data-aos="fade-up">
+            <h2>Let's Collaborate</h2>
+        </div>
+        <div class="contact-flex">
+            <div class="contact-box" data-aos="fade-right">
+                <h3>Contact Info</h3>
+                <br>
+                <p><i class="fas fa-envelope" style="color:var(--primary)"></i> &nbsp; whiteframes.wf@gmail.com</p>
+                <br>
+                <p><i class="fas fa-phone" style="color:var(--primary)"></i> &nbsp; +91 9495476923</p>
+                <br>
+                <p><i class="fas fa-map-marker-alt" style="color:var(--primary)"></i> &nbsp; Parappa, Kasaragod, Kerala</p>
             </div>
-            <form class="contact-form" action="#" method="GET">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Tell us about your project..." required></textarea>
-                <button type="submit" class="btn" style="width: 100%;">Send Message</button>
-            </form>
+            <div class="contact-form" data-aos="fade-left">
+                <form action="https://formspree.io/f/xeevoyqv" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="full_name" placeholder="Full Name" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+                        <button type="submit" class="btn-premium" style="width:100%; border:none;">Send Message</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
     <footer>
-        <div class="social-links">
-            <a href="https://www.instagram.com/ys_iam_sk?igsh=bnR1dGFzNnV1OGY0" target="_blank" class="insta" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            
-            <a href="https://wa.me/919495476923" target="_blank" class="wa" title="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            
-            <a href="https://youtube.com/@YOUR_CHANNEL_ID" target="_blank" class="yt" title="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/ys_iam_sk?igsh=bnR1dGFzNnV1OGY0" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/919495476923" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
         <p>&copy; 2026 White Frame - The Hue Studios. All rights reserved.</p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '10px 8%';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.padding = '20px 8%';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
